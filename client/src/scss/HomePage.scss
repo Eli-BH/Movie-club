@@ -6,3 +6,22 @@
 .homepage {
   margin: 20px;
 }
+
+.jumbotron {
+  background-image: linear-gradient(to right, #373b44, #4286f4);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide {
+  filter: drop-shadow(0 0 0.75rem #4286f4);
+}
+
+@media screen and (max-width: 700px) {
+  .jumbotron {
+    background-image: linear-gradient(to right, #4286f4, #373b44);
+    background-size: cover;
+  }
+}

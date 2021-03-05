@@ -1,49 +1,30 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
+import Container from "react-bootstrap/esm/Container";
+import Image from "react-bootstrap/Image";
 
-const CarouselComponent = () => {
+const CarouselComponent = ({ images }) => {
   return (
-    <div>
-      <Carousel fluid="sm">
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://loremflickr.com/800/400"
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://loremflickr.com/800/400"
-            alt="Second slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://loremflickr.com/800/400"
-            alt="Third slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
+    <Container fluid>
+      <Carousel indicators={false}>
+        {images ? (
+          images.map((item) => {
+            return (
+              <Carousel.Item key={item.title}>
+                <Image
+                  src={`https://www.themoviedb.org/t/p/original${item.poster_path}`}
+                  alt={item.title}
+                  style={{ maxHeight: 250 }}
+                  rounded
+                />
+              </Carousel.Item>
+            );
+          })
+        ) : (
+          <h1>Loading</h1>
+        )}
       </Carousel>
-    </div>
+    </Container>
   );
 };
 
