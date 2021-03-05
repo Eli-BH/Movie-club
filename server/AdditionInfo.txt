@@ -1,0 +1,2 @@
+TMDB example request
+https://api.themoviedb.org/3/movie/550?api_key=0ca4f16446cc1bca4c690abae99b5e52
