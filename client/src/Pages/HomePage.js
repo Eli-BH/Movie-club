@@ -1,26 +1,34 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import JumbotronComponent from "../components/JumbotronComponent";
+import Spinner from "react-bootstrap/Spinner";
 
-export const HomePage = () => {
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTrendingMovies, trendingSelector } from "../slices/trending";
+
+const HomePage = () => {
+  const dispatch = useDispatch();
+  const { trendingMovies, loading } = useSelector(trendingSelector);
   const images = [];
 
   useEffect(() => {
-    async function fetchPosters() {
-      await axios
-        .get(
-          "https://api.themoviedb.org/3/trending/movie/day?api_key=0ca4f16446cc1bca4c690abae99b5e52"
-        )
-        .then((res) => {
-          for (let i = 0; i < 3; i++) {
-            images.push(res.data.results[i]);
-          }
-        });
-    }
-    fetchPosters();
-  });
+    dispatch(fetchTrendingMovies());
+    //hasErrors ?? console.log(hasErrors);
+  }, [dispatch]);
 
-  return (
+  if (trendingMovies.results) {
+    for (let i = 0; i < 3; i++) {
+      images.push(trendingMovies.results[i]);
+    }
+  }
+
+  return loading ? (
+    <div style={{ width: 33, marginRight: "auto", marginLeft: "auto" }}>
+      <Spinner animation="border">
+        <span className="sr-only">Loading</span>
+      </Spinner>
+    </div>
+  ) : (
     <div className="homepage">
       <JumbotronComponent images={images} />
     </div>

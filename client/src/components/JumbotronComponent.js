@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import CarouselComponent from "./CarouselComponent";
-import Container from "react-bootstrap/Container";
+
 import { AiOutlineSearch } from "react-icons/ai";
 import Button from "react-bootstrap/esm/Button";
 
-const JumbotronComponent = ({ images }) => {
+const JumbotronComponent = ({ images, loading }) => {
   const [search, setSearch] = useState("");
 
   const handleSubmit = (e) => {
@@ -35,8 +35,8 @@ const JumbotronComponent = ({ images }) => {
             />
 
             <Button type="submit" className="search-button">
+              <AiOutlineSearch className="mr-1" />
               Search
-              <AiOutlineSearch />
             </Button>
           </form>
         </div>
