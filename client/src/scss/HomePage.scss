@@ -8,6 +8,7 @@
   border-top-left-radius: 0%;
   border-top-right-radius: 0%;
 }
+
 .homepage {
   margin: 0;
 
@@ -42,6 +43,46 @@
       border-bottom-right-radius: 20px;
       border-top-right-radius: 20px;
     }
+  }
+  .full {
+    display: flex;
+
+    button {
+      width: 100px;
+      height: 100px;
+      align-self: center;
+    }
+  }
+
+  .list-container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+
+    .list-item {
+      text-align: center;
+      font-size: 1.2em;
+    }
+  }
+  .list-container::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .list-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 15px;
+  }
+  .list-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 15px;
+  }
+  .list-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  #marquee-button {
+    background-color: #08101d;
+    color: white;
   }
 }
 
@@ -89,5 +130,12 @@
       border-bottom-right-radius: 20px;
       border-top-right-radius: 20px;
     }
+  }
+  #marquee-button {
+    display: none;
+  }
+
+  .list-container::-webkit-scrollbar {
+    display: none;
   }
 }

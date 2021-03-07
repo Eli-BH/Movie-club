@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import JumbotronComponent from "../components/JumbotronComponent";
 import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTrendingMovies, trendingSelector } from "../slices/trending";
+import TrendingSlider from "../components/TrendingSlider";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,10 @@ const HomePage = () => {
   ) : (
     <div className="homepage">
       <JumbotronComponent images={images} />
+      <div className="container">
+        <h2>Trending Today</h2>
+        <TrendingSlider movies={trendingMovies.results} />
+      </div>
     </div>
   );
 };

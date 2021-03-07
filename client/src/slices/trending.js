@@ -42,7 +42,7 @@ export const trendingSelector = (state) => state.trendingMovies;
 //The reducer
 export default trendingSlice.reducer;
 
-//Asynchronys thunk actions
+//Asynchronous thunk actions
 export function fetchTrendingMovies() {
   return async (dispatch) => {
     dispatch(getTrending());
