@@ -19,12 +19,12 @@ const NavbarComponent = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link className="px-5">Home</Nav.Link>
-              <Nav.Link className="px-5">Profile</Nav.Link>
+              <Nav.Link className="mx-5">Home</Nav.Link>
+              <Nav.Link className="mx-5">Profile</Nav.Link>
               <Button
                 variant={loggedIn ? "info" : "danger"}
                 onClick={handleLogin}
-                className="mx-5"
+                className="ml-5"
               >
                 {loggedIn ? "Log out" : "Log in"}
               </Button>

@@ -22,9 +22,7 @@ export const HomePage = () => {
 
   return (
     <div className="homepage">
-      <div className="carousel">
-        <JumbotronComponent images={images} />
-      </div>
+      <JumbotronComponent images={images} />
     </div>
   );
 };
