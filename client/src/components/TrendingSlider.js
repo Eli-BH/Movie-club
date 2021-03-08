@@ -19,7 +19,7 @@ const TrendingSlider = ({ items, sliderId, person }) => {
           <div className={`list-container${sliderId} list-container`}>
             {items.map((item) => {
               return (
-                <div className="mr-5 list-item">
+                <div className="mr-5 list-item" key={item.name}>
                   <Link to={`/actor/${item.id}`}>
                     <img
                       src={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
@@ -37,7 +37,7 @@ const TrendingSlider = ({ items, sliderId, person }) => {
           <div className={`list-container${sliderId} list-container`}>
             {items.map((item) => {
               return (
-                <div className="mr-5 list-item">
+                <div className="mr-5 list-item" key={item.id}>
                   <Link to={`/movie/${item.id}`}>
                     <img
                       src={`https://www.themoviedb.org/t/p/original${item.poster_path}`}
