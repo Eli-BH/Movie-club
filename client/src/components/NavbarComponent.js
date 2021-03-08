@@ -15,11 +15,15 @@ const NavbarComponent = () => {
     <>
       <Navbar collapseOnSelect expand="lg" bg="nav" variant="dark">
         <Container>
-          <Navbar.Brand>MovieClub</Navbar.Brand>
+          <Navbar.Brand>
+            <a href="/">MovieClub</a>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link className="mx-5">Home</Nav.Link>
+              <Nav.Link className="mx-5" href="/">
+                Home
+              </Nav.Link>
               <Nav.Link className="mx-5">Profile</Nav.Link>
               <Button
                 variant={loggedIn ? "info" : "danger"}

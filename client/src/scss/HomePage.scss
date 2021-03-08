@@ -73,16 +73,20 @@
     border-radius: 15px;
   }
   .list-container::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #4286f4;
     border-radius: 15px;
   }
   .list-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgb(32, 73, 134);
   }
 
   #marquee-button {
     background-color: #08101d;
     color: white;
+  }
+
+  .trending-slider-container {
+    margin-top: 3%;
   }
 }
 

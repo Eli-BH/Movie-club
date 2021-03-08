@@ -28,7 +28,7 @@ const trendingSlice = createSlice({
   },
 });
 
-//Tree actions genereated from the slice
+//Tree actions generated from the slice
 export const {
   getTrending,
   getTrendingSuccess,
