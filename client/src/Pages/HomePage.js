@@ -63,7 +63,7 @@ const HomePage = () => {
           videos.push({
             name: popularVideos.results[item].original_title,
             backdrop: `https://www.themoviedb.org/t/p/original${popularVideos.results[item].backdrop_path}`,
-            link: `https://youtube.com/watch?v=${data.results[0].key}`,
+            link: `https://youtube.com/embed/${data.results[0].key}`,
           });
         })
         .catch((err) => console.log(err));
@@ -105,14 +105,7 @@ const HomePage = () => {
 
       <div className="container-md popular-slider-container mt-5">
         <h2>Popular Trailers</h2>
-        <div
-          style={{
-            padding: 150,
-            backgroundColor: "aqua",
-            marginBottom: 50,
-            borderRadius: 15,
-          }}
-        >
+        <div id="trailer-slider-container">
           <PopularTrailersSlider
             videos={videos}
             loading={popularVideosloading}

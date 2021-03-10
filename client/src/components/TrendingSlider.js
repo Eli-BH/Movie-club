@@ -15,6 +15,7 @@ const TrendingSlider = ({ items, sliderId, person }) => {
         <button onClick={handleLeft} id="marquee-button">
           {"<"}
         </button>
+
         {person ? (
           <div className={`list-container${sliderId} list-container`}>
             {items.map((item) => {
