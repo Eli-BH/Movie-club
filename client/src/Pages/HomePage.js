@@ -13,13 +13,9 @@ import {
   fetchTrendingPeople,
   trendingPeopleSelector,
 } from "../slices/trendingPeople";
-import {
-  fetchPopularVideos,
-  popularVideosSelector,
-} from "../slices/popularVideos";
+
 import TrendingSlider from "../components/TrendingSlider";
-import axios from "axios";
-import PopularTrailersSlider from "../components/PopularTrailersSlider";
+import TrailerSlider from "../components/TrailerSlider";
 
 const HomePage = () => {
   //redux functions
@@ -32,20 +28,14 @@ const HomePage = () => {
     trendingPeopleSelector
   );
 
-  const { popularVideos, popularVideosloading = loading } = useSelector(
-    popularVideosSelector
-  );
-
   const images = [];
   //This array holds object of the popular videos {name:String name, link: youtube link}
-  const videos = [];
 
   useEffect(() => {
     dispatch(fetchTrendingMovies());
     //hasErrors ?? console.log(hasErrors);
     dispatch(fetchWeekTrending());
     dispatch(fetchTrendingPeople());
-    dispatch(fetchPopularVideos());
   }, [dispatch]);
 
   if (trendingMovies.results) {
@@ -53,23 +43,7 @@ const HomePage = () => {
       images.push(trendingMovies.results[i]);
     }
   }
-  if (popularVideos.results) {
-    for (const item in popularVideos.results) {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/movie/${popularVideos.results[item].id}/videos?api_key=0ca4f16446cc1bca4c690abae99b5e52`
-        )
-        .then(({ data }) => {
-          videos.push({
-            name: popularVideos.results[item].original_title,
-            backdrop: `https://www.themoviedb.org/t/p/original${popularVideos.results[item].backdrop_path}`,
-            link: `https://youtube.com/embed/${data.results[0].key}`,
-          });
-        })
-        .catch((err) => console.log(err));
-    }
-    console.log(videos);
-  }
+
   return loading ? (
     <div style={{ width: 33, marginRight: "auto", marginLeft: "auto" }}>
       <Spinner animation="border">
@@ -92,7 +66,10 @@ const HomePage = () => {
           loading={weekLoading}
         />
       </div>
-
+      <div className="container my-5">
+        <h2>New Trailers</h2>
+        <TrailerSlider />
+      </div>
       <div className="container trending-slider-container">
         <h2>Trending Actors</h2>
         <TrendingSlider
@@ -101,16 +78,6 @@ const HomePage = () => {
           loading={peopleLoading}
           person
         />
-      </div>
-
-      <div className="container-md popular-slider-container mt-5">
-        <h2>Popular Trailers</h2>
-        <div id="trailer-slider-container">
-          <PopularTrailersSlider
-            videos={videos}
-            loading={popularVideosloading}
-          />
-        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FiPlayCircle } from "react-icons/fi";
+import { FiPlayCircle, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 
 const PopularTrailersSlider = ({ videos, loading }) => {
   const [show, setShow] = useState(false);
@@ -15,7 +16,10 @@ const PopularTrailersSlider = ({ videos, loading }) => {
   };
 
   return videos ? (
-    <div className="trailer-scroll-list my-5">
+    <div className="trailer-scroll-list my-5" style={{ display: "flex" }}>
+      <button id="slider-button">
+        <FiChevronLeft />
+      </button>
       <div className="trailer-scroll-container">
         <Modal show={show} onHide={handleClose} centered>
           <iframe
@@ -29,28 +33,28 @@ const PopularTrailersSlider = ({ videos, loading }) => {
           ></iframe>
         </Modal>
 
-        {videos ? (
-          videos.map((vid) => {
-            return (
-              <div className="mr-5 trailer-list-item" key={vid.name}>
-                <img
-                  src={vid.backdrop}
-                  alt={vid.name}
-                  className="trailer-backdrop"
-                />
+        {videos.map((vid, index) => {
+          return (
+            <div className="mr-5 trailer-list-item" key={index}>
+              <img
+                src={vid.backdrop}
+                alt={vid.name}
+                className="trailer-backdrop"
+              />
 
-                <div className="play" onClick={() => handleOpen(vid.link)}>
-                  <FiPlayCircle className="play-btn" />
-                </div>
-
-                <p>{vid.name}</p>
+              <div className="play" onClick={() => handleOpen(vid.link)}>
+                <FiPlayCircle className="play-btn" />
               </div>
-            );
-          })
-        ) : (
-          <h6>Loading</h6>
-        )}
+              <Link to={`/movie/${vid.id}`}>
+                <p>{vid.name}</p>
+              </Link>
+            </div>
+          );
+        })}
       </div>
+      <button id="slider-button">
+        <FiChevronRight />
+      </button>
     </div>
   ) : (
     <div>
