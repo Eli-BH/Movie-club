@@ -48,7 +48,6 @@ export function fetchSingleMovie(id) {
 
     try {
       const url = `https://api.themoviedb.org/3/movie/${id}?api_key=0ca4f16446cc1bca4c690abae99b5e52&language=en-US&append_to_response=similar,videos,recommendations,images,credits,alternative_titles,release_dates`;
-
       const response = await axios.get(url);
       const { data } = response;
       dispatch(getSingleMovieSuccess(data));

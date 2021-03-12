@@ -17,7 +17,7 @@ const MoviePage = ({ match }) => {
       {" "}
       {loading && <div>{loading}</div>}
       {
-        <div style={{ display: "flex" }}>
+        <div className="movie-banner-container">
           <div>
             <img
               src={`https://www.themoviedb.org/t/p/original${singleMovie.poster_path}`}
@@ -26,12 +26,12 @@ const MoviePage = ({ match }) => {
             />
           </div>
 
-          <div>
+          <div className="movie-banner-text">
             <div>
               <h1>{singleMovie.title}</h1>
             </div>
-            <div>
-              <ul style={{ display: "inline" }}>
+            <div className="movie-banner-genres">
+              <ul>
                 <li>{singleMovie.release_date}</li>
                 {singleMovie.genres ? (
                   singleMovie.genres.map((item, index) => {
@@ -44,7 +44,7 @@ const MoviePage = ({ match }) => {
               </ul>
             </div>
 
-            <div>
+            <div className="movie-banner-overview">
               <p>
                 <i>{singleMovie.tagline}</i>
               </p>
@@ -52,7 +52,7 @@ const MoviePage = ({ match }) => {
               <p>{singleMovie.overview}</p>
             </div>
 
-            <div>
+            <div className="movie-banner-cast">
               <div>
                 <h6>{singleMovie.credits.cast[0].name}</h6>
                 <p>{singleMovie.credits.cast[0].known_for_department}</p>

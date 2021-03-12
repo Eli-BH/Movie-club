@@ -1,0 +1,49 @@
+.movie-banner-container {
+  background: rgb(2, 0, 36);
+  background: -moz-linear-gradient(
+    126deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(39, 9, 121, 1) 35%,
+    rgba(0, 168, 255, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    126deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(39, 9, 121, 1) 35%,
+    rgba(0, 168, 255, 1) 100%
+  );
+  background: linear-gradient(
+    126deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(39, 9, 121, 1) 35%,
+    rgba(0, 168, 255, 1) 100%
+  );
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00a8ff",GradientType=1);
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+
+  color: white;
+  .movie-banner-genres ul {
+    display: flex;
+    flex-direction: row;
+
+    li {
+      margin-right: 20px;
+      list-style-type: none;
+    }
+  }
+
+  .movie-banner-overview {
+    justify-content: center;
+  }
+  .movie-banner-cast {
+    display: flex;
+    justify-content: space-around;
+  }
+  .movie-banner-text {
+    width: 70%;
+  }
+}
