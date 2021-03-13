@@ -1,16 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
+import axios from "axios";
 
 const MoviePage = ({ match }) => {
+  const [watchProviders, setWatchProviders] = useState(null);
   const dispatch = useDispatch();
   const id = match.params.id;
   const { loading, singleMovie } = useSelector(singleMovieSelector);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
-  }, [dispatch, id]);
+    const response = async () => {
+      await axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=0ca4f16446cc1bca4c690abae99b5e52`
+        )
+        .then(({ data }) => {
+          setWatchProviders(data.results.US);
+        })
+        .catch((err) => console.log(err));
+    };
 
+    console.log(response());
+  }, [dispatch, id]);
+  console.log(watchProviders);
   console.log(singleMovie);
   return singleMovie ? (
     <div>
@@ -85,6 +99,14 @@ const MoviePage = ({ match }) => {
               <p>
                 <i>{singleMovie.tagline}</i>
               </p>
+              {watchProviders ? (
+                <div className="movie-banner-watch-providers">
+                  Watch rent or buy from these providers
+                  {watchProviders.buy && <div>buy</div>}
+                  {watchProviders.flatrate && <div>stream</div>}
+                  {watchProviders.rent && <div>rent</div>}
+                </div>
+              ) : null}
               <h3>Overview</h3>
               <p>{singleMovie.overview}</p>
             </div>
