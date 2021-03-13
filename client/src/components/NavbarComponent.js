@@ -15,7 +15,7 @@ const NavbarComponent = () => {
     <>
       <Navbar collapseOnSelect expand="lg" bg="nav" variant="dark">
         <Container>
-          <Navbar.Brand>
+          <Navbar.Brand className="nav-brand">
             <a href="/">MovieClub</a>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -28,7 +28,7 @@ const NavbarComponent = () => {
               <Button
                 variant={loggedIn ? "info" : "danger"}
                 onClick={handleLogin}
-                className="ml-5"
+                className="ml-5 nav-button"
               >
                 {loggedIn ? "Log out" : "Log in"}
               </Button>
