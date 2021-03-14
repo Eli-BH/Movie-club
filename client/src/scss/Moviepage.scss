@@ -112,7 +112,11 @@
     margin-left: 100px;
   }
 }
-
+.movie-page-container {
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .movie-page-left {
   .movie-page-cast-slider {
     display: flex;
@@ -152,6 +156,98 @@
       p:nth-child(3) {
         font-size: 14px;
         margin: 0px;
+      }
+    }
+  }
+  .media-videos {
+    display: flex;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #a9e4fb;
+      border-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #4286f4;
+      border-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(32, 73, 134);
+    }
+
+    .media-video-item {
+      margin: 0 10px 0 10px;
+      iframe {
+        border-radius: 15px;
+      }
+    }
+  }
+
+  .media-similar {
+    display: flex;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #a9e4fb;
+      border-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #4286f4;
+      border-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(32, 73, 134);
+    }
+    .similar-img-div {
+      margin: 15px;
+      .similar-img {
+        height: 300px;
+      }
+    }
+  }
+
+  .recommendations {
+    display: flex;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #a9e4fb;
+      border-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #4286f4;
+      border-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(32, 73, 134);
+    }
+    .recommendations-container {
+      margin: 15px;
+      .recommendations-img {
+        height: 300px;
+      }
+    }
+  }
+}
+
+.movie-page-right {
+  .watchProviders-watch {
+    margin: 50px 0 50px 0;
+    img {
+      margin: 15px;
+      height: 50px;
+      cursor: pointer;
+      &:hover {
+        border: solid 1px aquamarine;
       }
     }
   }
