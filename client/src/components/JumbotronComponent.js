@@ -3,13 +3,15 @@ import CarouselComponent from "./CarouselComponent";
 
 import { AiOutlineSearch } from "react-icons/ai";
 import Button from "react-bootstrap/esm/Button";
+import { useHistory } from "react-router-dom";
 
 const JumbotronComponent = ({ images, loading }) => {
-  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("searched");
+    history.push(`/search/${query}`);
   };
 
   return (
@@ -29,12 +31,12 @@ const JumbotronComponent = ({ images, loading }) => {
             <input
               className="homepage-search"
               type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               placeholder="Search..."
             />
 
-            <Button type="submit" className="search-button">
+            <Button type="submit" className="search-button" o>
               <AiOutlineSearch className="mr-1" />
               Search
             </Button>

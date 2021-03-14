@@ -5,6 +5,8 @@ const SignupPage = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  return <div>SignupPage</div>;
 };
 
 export default SignupPage;
