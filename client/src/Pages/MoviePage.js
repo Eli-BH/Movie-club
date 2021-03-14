@@ -165,7 +165,7 @@ const MoviePage = ({ match }) => {
       }
       <div className=" movie-page-container">
         <Row className=" movie-page-divider">
-          <Col lg={9} className="movie-page-left mt-5 mb-2">
+          <Col lg={8} sm={12} className="movie-page-left mt-5 mb-2">
             <div>
               <h2>Top Billed Cast</h2>
               <div className="movie-page-cast-slider mt-4" id="mp-cast-slider">
@@ -292,7 +292,7 @@ const MoviePage = ({ match }) => {
             )}
           </Col>
 
-          <Col lg={3} className="movie-page-right  mt-5 mb-2">
+          <Col lg={4} sm={12} className="movie-page-right  mt-5 mb-2">
             <div className="movie-stats">
               <div id="status" className="movie-stats-item">
                 <h1>Status</h1>
