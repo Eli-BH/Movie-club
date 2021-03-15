@@ -1,0 +1,38 @@
+.search-results-page{
+    width: 100vw;
+    height: 100vh;
+    .search-results-container{
+        max-width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .search-results-cards{
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+        border: solid black 1px; 
+        &:hover{
+            border: solid blue 1px;
+            cursor: pointer;
+            box-shadow: 0px 0px 5px rgb(24, 66, 255);
+        }
+
+        .search-results-card-info{
+            align-items: center;
+        text-decoration: none;
+            .search-results-text{
+                color: black;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+}
+
+.noResults-search-page{
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}

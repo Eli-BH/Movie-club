@@ -42,13 +42,13 @@ export const searchResultsSelector = (state) => state.searchResults;
 export default searchResultsSlice.reducer;
 
 //Thunk
-export function fetchSearchResults(query) {
+export function fetchSearchResults(query, page = 1) {
   return async (dispatch) => {
     dispatch(getSearchResults());
     try {
       if (query.includes(" ")) query = query.replaceAll(" ", "%20");
 
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=0ca4f16446cc1bca4c690abae99b5e52&language=en-US&query=${query}&include_adult=false`;
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=0ca4f16446cc1bca4c690abae99b5e52&language=en-US&query=${query}&include_adult=false&page=${page}`;
       const response = await axios.get(url);
       const { data } = response;
       dispatch(getSearchResultsSuccess(data));

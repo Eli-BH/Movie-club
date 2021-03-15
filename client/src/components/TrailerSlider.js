@@ -14,8 +14,11 @@ const TrailerSlider = () => {
 
   useEffect(() => {
     dispatch(fetchTrailers());
+  }, [dispatch]);
+
+  useEffect(() => {
     setTrailerData(trailers);
-  }, [dispatch, trailers]);
+  }, [trailers]);
 
   const handleOpen = (id) => {
     setId(id);
