@@ -4,12 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
+import { Link } from "react-router-dom";
+
 const NavbarComponent = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setLoggedIn(!loggedIn);
-  };
 
   return (
     <>
@@ -25,13 +23,14 @@ const NavbarComponent = () => {
                 Home
               </Nav.Link>
               <Nav.Link className="mx-5">Profile</Nav.Link>
-              <Button
-                variant={loggedIn ? "info" : "danger"}
-                onClick={handleLogin}
-                className="ml-5 nav-button"
-              >
-                {loggedIn ? "Log out" : "Log in"}
-              </Button>
+              <Link to={!loggedIn && "/auth"}>
+                <Button
+                  variant={loggedIn ? "info" : "danger"}
+                  className="ml-5 nav-button"
+                >
+                  {loggedIn ? "Log out" : "Log in"}
+                </Button>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

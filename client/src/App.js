@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MoviePage from "./Pages/MoviePage";
 import ActorPage from "./Pages/ActorPage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
+import Auth from "./Pages/Auth";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/movie/:id" component={MoviePage} />
         <Route path="/actor/:id" component={ActorPage} />
         <Route path="/search/:query" component={SearchResultsPage} />
+        <Route path="/auth" exact component={Auth} />
       </Switch>
     </Router>
   );

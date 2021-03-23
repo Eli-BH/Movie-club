@@ -1,0 +1,11 @@
+.authForm {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 750px) {
+  .cardHeader {
+    display: none;
+  }
+}
