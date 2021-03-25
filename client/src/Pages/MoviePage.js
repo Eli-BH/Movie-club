@@ -3,15 +3,31 @@ import { useSelector, useDispatch } from "react-redux";
 import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { TiThumbsUp } from "react-icons/ti";
+import { addLike } from "../slices/userActions";
+import { userInfoSelector } from "../slices/userInfo";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import axios from "axios";
 
 const MoviePage = ({ match }) => {
   const [watchProviders, setWatchProviders] = useState(null);
+  const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
   const id = match.params.id;
   const { loading, singleMovie } = useSelector(singleMovieSelector);
+  const { userInfo } = useSelector(userInfoSelector);
+
+  //user selector
+  //slice for user actions
+  //favorite
+  //rating
+  //favorite button
+  //rate stars
+  //comment section
+  //chat section
+
+  //in the usermodel, add objects for the movie edit information
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -28,6 +44,18 @@ const MoviePage = ({ match }) => {
 
     console.log(response());
   }, [dispatch, id]);
+
+  const handleLike = () => {
+    const movieInfo = {
+      id: singleMovie?.id,
+      title: singleMovie?.original_title,
+      image: singleMovie?.poster_path,
+    };
+
+    dispatch(addLike(userInfo?._id, movieInfo));
+    setLiked(true);
+  };
+
   console.log(watchProviders);
   console.log(singleMovie);
   const handleRedirect = (local) => {
@@ -119,20 +147,33 @@ const MoviePage = ({ match }) => {
             <div>
               <h1>{singleMovie.title}</h1>
             </div>
-            <div className="movie-banner-genres">
-              <p>{singleMovie.release_date.replaceAll("-", "/")}</p>
-              <div className="dropdown">
-                <div className="dropbtn">Genres</div>
-                <div className="dropdown-content">
-                  {singleMovie.genres
-                    ? singleMovie.genres.map((item, index) => {
-                        return <p key={index}>{item.name} </p>;
-                      })
-                    : null}
-                </div>
-              </div>
 
-              <p>{singleMovie.runtime} minutes</p>
+            <div className="movie-banner-genres">
+              <div>
+                <p>{singleMovie.release_date.replaceAll("-", "/")}</p>
+
+                <div className="d-flex align-items-center">
+                  <div className="dropdown mr-2">
+                    <div className="dropbtn">Genres</div>
+                    <div className="dropdown-content">
+                      {singleMovie.genres
+                        ? singleMovie.genres.map((item, index) => {
+                            return <p key={index}>{item.name} </p>;
+                          })
+                        : null}
+                    </div>
+                  </div>
+                  <div>
+                    <button className="px-2" onClick={handleLike}>
+                      {" "}
+                      <TiThumbsUp />
+                      Like
+                    </button>
+                  </div>
+                </div>
+
+                <p>{singleMovie.runtime} minutes</p>
+              </div>
             </div>
 
             <div className="movie-banner-overview">

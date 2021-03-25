@@ -10,10 +10,12 @@ import { logout } from "../slices/auth";
 import { fetchUserInfo } from "../slices/userInfo";
 
 const NavbarComponent = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("profile")) || null
+  );
   const dispatch = useDispatch();
   const location = useLocation();
-  const userId = user.id;
+  const userId = user?.id;
 
   const signout = () => {
     dispatch(logout());
@@ -22,12 +24,12 @@ const NavbarComponent = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserInfo(userId));
+    userId && dispatch(fetchUserInfo(userId));
 
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [dispatch, userId, location]);
 
-  console.log(user);
+  if (user) console.log(user);
 
   return (
     <>

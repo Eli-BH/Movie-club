@@ -56,7 +56,7 @@ const AuthForm = () => {
     const result = res?.profileObj;
     const token = res?.tokenId;
 
-    setFormData({
+    const googleFormData = {
       firstName: result.givenName,
       lastName: result.familyName,
       userName: result.name,
@@ -64,14 +64,15 @@ const AuthForm = () => {
       password: result.googleId,
       confirmPassword: result.googleId,
       userIcon: result.imageUrl,
-    });
+    };
 
     if (signUp) {
-      dispatch(authSignUp(formData, history));
+      console.log(googleFormData);
+      dispatch(authSignUp(googleFormData, history));
     } else {
-      dispatch(authLogin(formData, history));
+      console.log(googleFormData);
+      dispatch(authLogin(googleFormData, history));
     }
-    console.log(formData);
   };
 
   const googleFailure = (err) => {
