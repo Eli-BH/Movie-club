@@ -5,12 +5,12 @@ import axios from "axios";
 
 const initialState = {
   loading: false,
-  hasErrors: false,
+  hasError: false,
   authData: {},
 };
 
 const authLoginSlice = createSlice({
-  name: "authorization",
+  name: "authSlice",
   initialState,
   reducers: {
     login: (state) => {
@@ -18,26 +18,31 @@ const authLoginSlice = createSlice({
     },
     loginSuccess: (state, { payload }) => {
       state.loading = false;
-      state.hasErrors = false;
+      state.hasError = false;
       state.authData = payload;
+      localStorage.setItem("profile", JSON.stringify({ ...payload }));
     },
     loadingFailure: (state) => {
       state.loading = false;
-      state.hasErrors = true;
+      state.hasError = true;
     },
     signUp: (state) => {
       state.loading = true;
-      state.hasErrors = false;
     },
     signUpSuccess: (state, { payload }) => {
       state.loading = false;
-      state.hasErrors = false;
+      state.hasError = false;
       state.authData = payload;
+      localStorage.setItem("profile", JSON.stringify({ ...payload }));
+    },
+    signUpFailure: (state, { payload }) => {
+      state.loading = false;
+      state.hasError = payload;
     },
 
     logout: (state) => {
-      localStorage.removeItem("profile");
-      state.authData = {};
+      localStorage.clear();
+      state.authData = { ...state, authData: null };
     },
   },
 });
@@ -52,7 +57,7 @@ export const {
   logout,
 } = authLoginSlice.actions;
 
-export const authLoginSelector = (state) => state.authData;
+export const authSelector = (state) => state.authSlice;
 
 //reducer
 export default authLoginSlice.reducer;
@@ -63,7 +68,7 @@ export function authLogin(formData, history) {
     dispatch(login());
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/users/signin",
+        "http://localhost:3001/users/signin",
         formData
       );
 
@@ -80,14 +85,14 @@ export function authSignUp(formData, history) {
     dispatch(signUp());
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/users/signup",
+        "http://localhost:3001/users/signup",
         formData
       );
 
       dispatch(signUpSuccess(data));
       history.push("/");
     } catch (error) {
-      console.log(error);
+      dispatch(signUpFailure(error?.response?.data));
     }
   };
 }

@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../slices/auth";
+import { fetchUserInfo } from "../slices/userInfo";
 
 const NavbarComponent = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const userId = user.id;
+
+  const signout = () => {
+    dispatch(logout());
+
+    setUser(null);
+  };
+
+  useEffect(() => {
+    dispatch(fetchUserInfo(userId));
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [dispatch, userId, location]);
+
+  console.log(user);
 
   return (
     <>
@@ -22,13 +42,19 @@ const NavbarComponent = () => {
               <Nav.Link className="mx-5" href="/">
                 Home
               </Nav.Link>
-              <Nav.Link className="mx-5">Profile</Nav.Link>
-              <Link to={!loggedIn && "/auth"}>
+              {user && (
+                <Nav.Link href={`/user/${user.id}`} className="mx-5">
+                  Profile
+                </Nav.Link>
+              )}
+
+              <Link to={!user ? "/auth" : "/"}>
                 <Button
-                  variant={loggedIn ? "info" : "danger"}
+                  variant={user ? "info" : "danger"}
                   className="ml-5 nav-button"
+                  onClick={user && signout}
                 >
-                  {loggedIn ? "Log out" : "Log in"}
+                  {user ? "Log out" : "Log in"}
                 </Button>
               </Link>
             </Nav>

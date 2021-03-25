@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Pagination, Row } from "react-bootstrap";
+import { Card, Col, Pagination, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSearchResults, searchResultsSelector } from "../slices/search";

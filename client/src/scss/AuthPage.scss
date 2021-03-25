@@ -2,6 +2,8 @@
   height: 90vh;
   display: flex;
   align-items: center;
+  overflow-y: auto;
+  padding-top: 50px;
 }
 
 @media screen and (max-width: 750px) {
