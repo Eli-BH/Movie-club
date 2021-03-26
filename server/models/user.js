@@ -20,7 +20,13 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   likes: {
-    type: [String],
+    type: [
+      {
+        id: Number,
+        title: String,
+        image: String,
+      },
+    ],
   },
   favorites: {
     type: [String],
@@ -33,6 +39,7 @@ const userSchema = mongoose.Schema({
       },
     ],
   },
+  userIcon: String,
   id: { type: String },
 });
 
