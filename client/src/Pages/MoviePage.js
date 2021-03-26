@@ -13,6 +13,7 @@ import axios from "axios";
 const MoviePage = ({ match }) => {
   const [watchProviders, setWatchProviders] = useState(null);
   const [liked, setLiked] = useState(false);
+  const [chatText, setChatText] = useState("");
   const dispatch = useDispatch();
   const id = match.params.id;
   const { loading, singleMovie } = useSelector(singleMovieSelector);
@@ -28,6 +29,33 @@ const MoviePage = ({ match }) => {
   //chat section
 
   //in the usermodel, add objects for the movie edit information
+
+  const movieComments = [
+    {
+      userId: "23423423",
+      comment: "This was a movie",
+    },
+    {
+      userId: "23423423",
+      comment: "This was a good movie",
+    },
+    {
+      userId: "23423423",
+      comment: "This was a great movie",
+    },
+    {
+      userId: "23423423",
+      comment: "This was a bad movie",
+    },
+    {
+      userId: "23423423",
+      comment: "This was a awesome movie",
+    },
+    {
+      userId: "23423423",
+      comment: "This was a movie",
+    },
+  ];
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -215,7 +243,7 @@ const MoviePage = ({ match }) => {
                   .slice(0, 20)
                   .map((item) => {
                     return (
-                      <div key={item.name} className="movie-page-cast-img">
+                      <div key={item.name} className="movie-page-cast-img p-1">
                         <img
                           src={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
                           alt={item.name}
@@ -239,7 +267,7 @@ const MoviePage = ({ match }) => {
                   .slice(0, 30)
                   .map((item, index) => {
                     return (
-                      <div key={index} className="movie-page-cast-img">
+                      <div key={index} className="movie-page-cast-img p-1">
                         <img
                           src={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
                           alt={item.name}
@@ -303,6 +331,43 @@ const MoviePage = ({ match }) => {
                         ) : (
                           <h3>No similar movies found</h3>
                         )}
+                      </div>
+                    </Tab>
+                    <Tab eventKey="comments" title="Comments">
+                      <div>
+                        <Row>
+                          <div
+                            style={{
+                              width: "100%",
+                              height: 200,
+                              border: "black 2px solid",
+                              overflowY: "scroll",
+                            }}
+                          >
+                            {movieComments.map((item) => (
+                              <div>
+                                <p>{item.comment}</p>
+                                <p>{item.userId}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </Row>
+
+                        <form>
+                          <Row>
+                            <Col lg={11} className="p-0">
+                              <input
+                                style={{ width: "100%" }}
+                                type="text"
+                                value={chatText}
+                                onChange={(e) => setChatText(e.target.value)}
+                              />
+                            </Col>
+                            <Col className="p-0">
+                              <button style={{ width: "100%" }}>Submit</button>
+                            </Col>
+                          </Row>
+                        </form>
                       </div>
                     </Tab>
                   </Tabs>
