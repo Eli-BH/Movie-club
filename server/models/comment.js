@@ -7,6 +7,9 @@ const commentSchema = mongoose.Schema({
   userId: {
     type: String,
   },
+  userName: {
+    type: String,
+  },
   comment: {
     type: String,
   },

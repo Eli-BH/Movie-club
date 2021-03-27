@@ -52,6 +52,7 @@ export const signup = async (req, res) => {
       id: result._id,
       email,
       token,
+      userName,
     });
   } catch (error) {
     console.error({ message: error });
@@ -86,6 +87,7 @@ export const signin = async (req, res) => {
     res.status(200).send({
       id: existingUser._id,
       email: existingUser.email,
+      username: existingUser.userName,
       token,
     });
   } catch (error) {
