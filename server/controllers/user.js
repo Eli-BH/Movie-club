@@ -132,6 +132,7 @@ export const likeMovie = async (req, res) => {
 
 export const addComment = async (req, res) => {
   const comment = req.body;
+  const movie = req.params;
 
   try {
     const user = await User.findById(comment.userId);
@@ -140,7 +141,13 @@ export const addComment = async (req, res) => {
 
     const result = await Comment.create(req.body);
 
-    res.status(200).json(result);
+    const comments = await Comment.find();
+
+    const singleMovieComments = comments.filter(
+      (obj) => obj.movieId === movie.id
+    );
+
+    res.status(200).json({ comments: singleMovieComments, result: result });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Something went wrong [addComment]" });
@@ -148,7 +155,7 @@ export const addComment = async (req, res) => {
 };
 
 export const getComments = async (req, res) => {
-  const movie = req.body;
+  const movie = req.params;
 
   try {
     const comments = await Comment.find();

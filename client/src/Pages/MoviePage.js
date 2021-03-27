@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Media, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TiThumbsUp } from "react-icons/ti";
-import { addLike } from "../slices/userActions";
+import {
+  addCommentThunk,
+  addLike,
+  getCommentsThunk,
+  userActionSelector,
+} from "../slices/userActions";
 import { userInfoSelector } from "../slices/userInfo";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
@@ -13,10 +18,15 @@ import axios from "axios";
 const MoviePage = ({ match }) => {
   const [watchProviders, setWatchProviders] = useState(null);
   const [liked, setLiked] = useState(false);
-  const [chatText, setChatText] = useState("");
+  const [comment, setComment] = useState("");
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [comments, setComments] = useState({});
+
   const dispatch = useDispatch();
   const id = match.params.id;
+
   const { loading, singleMovie } = useSelector(singleMovieSelector);
+
   const { userInfo } = useSelector(userInfoSelector);
 
   //user selector
@@ -30,29 +40,31 @@ const MoviePage = ({ match }) => {
 
   //in the usermodel, add objects for the movie edit information
 
+  console.log(comments);
   const movieComments = [
     {
-      userId: "23423423",
+      userId: "John",
       comment: "This was a movie",
     },
     {
-      userId: "23423423",
-      comment: "This was a good movie",
+      userId: "Jacob",
+      comment:
+        "My grandmother used to tell me stories about the old days, a time of peace when the Avatar kept balance between the Water Tribes, Earth Kingdom, Fire Nation, and Air Nomads. But that all changed when the Fire Nation attacked. Only the Avatar mastered all four elements. Only he could stop the ruthless firebenders, but when the world needed him most, he vanished. A hundred years have passed and the Fire Nation is nearing victory in the War.",
     },
     {
-      userId: "23423423",
+      userId: "Jinggle",
       comment: "This was a great movie",
     },
     {
-      userId: "23423423",
+      userId: "Heimer",
       comment: "This was a bad movie",
     },
     {
-      userId: "23423423",
+      userId: "Schmidt",
       comment: "This was a awesome movie",
     },
     {
-      userId: "23423423",
+      userId: "Eric",
       comment: "This was a movie",
     },
   ];
@@ -70,7 +82,14 @@ const MoviePage = ({ match }) => {
         .catch((err) => console.log(err));
     };
 
-    console.log(response());
+    response();
+
+    const comments = () =>
+      axios.get(`http://localhost:3001/users/comment/${id}`).then((res) => {
+        setComments(res.data.reverse());
+      });
+
+    comments();
   }, [dispatch, id]);
 
   const handleLike = () => {
@@ -81,7 +100,29 @@ const MoviePage = ({ match }) => {
     };
 
     dispatch(addLike(userInfo?._id, movieInfo));
+
     setLiked(true);
+  };
+
+  const handleComment = async (e) => {
+    e.preventDefault();
+
+    const commentObj = {
+      movieId: singleMovie?.id,
+      userId: user?.id,
+      comment,
+    };
+    await axios.post(`http://localhost:3001/users/comment/${id}`, commentObj);
+
+    const comments = () =>
+      axios
+        .get(`http://localhost:3001/users/comment/${id}`)
+        .then(({ data }) => {
+          setComments(data.reverse());
+        });
+
+    comments();
+    setComment("");
   };
 
   console.log(watchProviders);
@@ -344,27 +385,35 @@ const MoviePage = ({ match }) => {
                               overflowY: "scroll",
                             }}
                           >
-                            {movieComments.map((item) => (
-                              <div>
-                                <p>{item.comment}</p>
-                                <p>{item.userId}</p>
-                              </div>
+                            {comments.map((item) => (
+                              <Card>
+                                <Card.Body>
+                                  <Media>
+                                    <Media.Body>
+                                      <h6>{item.userId}</h6>
+                                      <p>{item.comment}</p>
+                                    </Media.Body>
+                                  </Media>
+                                </Card.Body>
+                              </Card>
                             ))}
                           </div>
                         </Row>
 
-                        <form>
+                        <form onSubmit={handleComment}>
                           <Row>
-                            <Col lg={11} className="p-0">
+                            <Col lg={10} className="p-0">
                               <input
                                 style={{ width: "100%" }}
                                 type="text"
-                                value={chatText}
-                                onChange={(e) => setChatText(e.target.value)}
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
                               />
                             </Col>
-                            <Col className="p-0">
-                              <button style={{ width: "100%" }}>Submit</button>
+                            <Col lg={2} className="p-0">
+                              <button type="submit" style={{ width: "100%" }}>
+                                Submit
+                              </button>
                             </Col>
                           </Row>
                         </form>

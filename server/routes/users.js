@@ -15,7 +15,7 @@ router.post("/signin", signin);
 router.post("/signup", signup);
 router.get("/profile/:id", getUser);
 router.patch("/like/:id", likeMovie);
-router.post("/comment", addComment);
-router.get("/comment", getComments);
+router.post("/comment/:id", addComment);
+router.get("/comment/:id", getComments);
 
 export default router;

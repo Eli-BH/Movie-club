@@ -5,7 +5,8 @@ import axios from "axios";
 const initialState = {
   loading: false,
   hasError: false,
-  actionResponse: null,
+  actionResponse: {},
+  responseData: {},
 };
 
 const userActionSlice = createSlice({
@@ -38,6 +39,32 @@ const userActionSlice = createSlice({
       state.loading = false;
       state.hasError = true;
     },
+    addComment: (state) => {
+      state.loading = false;
+      state.hasError = true;
+    },
+    addCommentSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.hasError = false;
+      state.actionResponse = payload;
+    },
+    addCommentFailure: (state) => {
+      state.loading = false;
+      state.hasError = false;
+    },
+    getComments: (state) => {
+      state.loading = true;
+      state.hasError = false;
+    },
+    getCommentsSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.hasError = false;
+      state.responseData = payload;
+    },
+    getCommentsFailure: (state) => {
+      state.loading = false;
+      state.hasError = true;
+    },
   },
 });
 
@@ -49,6 +76,12 @@ export const {
   collect,
   collectFailure,
   collectSuccess,
+  addComment,
+  addCommentSuccess,
+  addCommentFailure,
+  getComments,
+  getCommentsSuccess,
+  getCommentsFailure,
 } = userActionSlice.actions;
 
 //exported reducers
@@ -83,6 +116,42 @@ export function addToCollection(movie) {
     try {
     } catch (error) {
       dispatch(collectFailure());
+      console.log(error);
+    }
+  };
+}
+
+export function addCommentThunk(movieId, movieObj) {
+  return async (dispatch) => {
+    dispatch(addComment());
+
+    try {
+      const { data } = axios.post(
+        `http://localhost:3001/users/comment/${movieId}`,
+        movieObj
+      );
+
+      dispatch(addCommentSuccess(data));
+    } catch (error) {
+      dispatch(addCommentFailure());
+      console.log(error);
+    }
+  };
+}
+
+export function getCommentsThunk(movieId) {
+  return async (dispatch) => {
+    dispatch(getComments());
+
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/users/comment/${movieId} `
+      );
+
+      console.log(data);
+      dispatch(getCommentsSuccess(data));
+    } catch (error) {
+      dispatch(getCommentsFailure());
       console.log(error);
     }
   };
