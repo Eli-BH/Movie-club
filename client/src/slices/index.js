@@ -9,6 +9,7 @@ import searchResultsReducer from "./search";
 import authReducer from "./auth";
 import userInfoReducer from "./userInfo";
 import userActionsReducer from "./userActions";
+import actorReducer from "./actor";
 
 const rootReducer = combineReducers({
   trendingMovies: trendingReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   userInfo: userInfoReducer,
   userActions: userActionsReducer,
+  actor: actorReducer,
 });
 
 export default rootReducer;
