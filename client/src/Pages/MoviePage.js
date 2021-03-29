@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
 import { Row, Col } from "react-bootstrap";
-
-import {
-  addCommentThunk,
-  addLike,
-  getCommentsThunk,
-  userActionSelector,
-} from "../slices/userActions";
+import { addLike } from "../slices/userActions";
 import { userInfoSelector } from "../slices/userInfo";
 
 import axios from "axios";
+import io from "socket.io-client";
+
 import MoviePageBannerComponent from "../components/MoviePageBannerComponent";
 import CastComponent from "../components/CastComponent";
 import CrewComponent from "../components/CrewComponent";
@@ -20,32 +16,25 @@ import RecommendationsComponent from "../components/RecommendationsComponent";
 import StatsComponent from "../components/StatsComponent";
 import WatchProviders from "../components/WatchProviders";
 
+let socket;
+
 const MoviePage = ({ match }) => {
   const [watchProviders, setWatchProviders] = useState(null);
   const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState("");
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [comments, setComments] = useState({});
+  const [room, setRoom] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageList, setMessageList] = useState("");
+
+  const CONNECTION_PORT = "localhost:3001";
 
   const dispatch = useDispatch();
   const id = match.params.id;
 
   const { loading, singleMovie } = useSelector(singleMovieSelector);
-
   const { userInfo } = useSelector(userInfoSelector);
-
-  //user selector
-  //slice for user actions
-  //favorite
-  //rating
-  //favorite button
-  //rate stars
-  //comment section
-  //chat section
-
-  //in the usermodel, add objects for the movie edit information
-
-  console.log(comments);
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -69,6 +58,22 @@ const MoviePage = ({ match }) => {
 
     comments();
   }, [dispatch, id]);
+
+  useEffect(() => {
+    socket = io(CONNECTION_PORT);
+  }, [CONNECTION_PORT]);
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageList([...messageList, data]);
+      console.log(messageList);
+    });
+  });
+
+  useEffect(() => {
+    singleMovie && setRoom(singleMovie?.title);
+    socket.emit("join_room", room);
+  }, [room, singleMovie]);
 
   const handleLike = () => {
     const movieInfo = {
@@ -104,6 +109,19 @@ const MoviePage = ({ match }) => {
     setComment("");
   };
 
+  const sendMessage = async () => {
+    let messageContent = {
+      room,
+      content: {
+        author: user.username,
+        message: message,
+      },
+    };
+    await socket.emit("send_message", messageContent);
+    setMessageList([...messageList, messageContent.content]);
+    setMessage("");
+  };
+
   console.log(watchProviders);
   console.log(singleMovie);
 
@@ -117,6 +135,36 @@ const MoviePage = ({ match }) => {
           handleLike={handleLike}
         />
       }
+      {user ? (
+        <div className="chatContainer" style={{ height: 300, width: 600 }}>
+          <div className="messages">
+            {messageList &&
+              messageList?.map((val, index) => {
+                return (
+                  <div
+                    className="messageContainer"
+                    id={val.author === user.username ? "You" : "Other"}
+                  >
+                    <div className="messageIndividual" key={index}>
+                      <h5>{val.message}</h5>
+                    </div>
+                    <p>{val.author}</p>
+                  </div>
+                );
+              })}
+          </div>
+
+          <div className="messageInputs">
+            <input
+              type="text"
+              placeholder="Message..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button onClick={sendMessage}>Send</button>
+          </div>
+        </div>
+      ) : null}
       <div className=" movie-page-container">
         <Row className=" movie-page-divider">
           <Col lg={8} sm={12} className="movie-page-left mt-5 mb-2">
