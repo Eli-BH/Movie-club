@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import { Server } from "socket.io";
 
 import userRouter from "./routes/users.js";
+import chatRouter from "./routes/chat.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.options("*", cors());
 app.use(express.json());
 
 app.use("/users", userRouter);
+app.use("/chat", chatRouter);
 const CONNECTION_URI = process.env.MOGODB_URI;
 const PORT = process.env.PORT || 3001;
 

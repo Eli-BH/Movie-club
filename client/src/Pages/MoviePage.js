@@ -4,6 +4,12 @@ import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
 import { Row, Col } from "react-bootstrap";
 import { addLike } from "../slices/userActions";
 import { userInfoSelector } from "../slices/userInfo";
+import {
+  chatSelector,
+  fetchChat,
+  newMessage,
+  sendMessage,
+} from "../slices/chat";
 
 import axios from "axios";
 import io from "socket.io-client";
@@ -73,7 +79,8 @@ const MoviePage = ({ match }) => {
   useEffect(() => {
     singleMovie && setRoom(singleMovie?.title);
     socket.emit("join_room", room);
-  }, [room, singleMovie]);
+    room !== "" && dispatch(fetchChat(room));
+  }, [room, singleMovie, dispatch]);
 
   const handleLike = () => {
     const movieInfo = {
@@ -119,6 +126,7 @@ const MoviePage = ({ match }) => {
     };
     await socket.emit("send_message", messageContent);
     setMessageList([...messageList, messageContent.content]);
+    dispatch(newMessage({ name: room, author: user.username, message }));
     setMessage("");
   };
 
