@@ -127,31 +127,32 @@ const ActorPage = ({ match }) => {
                 </Accordion.Collapse>
               </Card>
 
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="2">
-                  Crew
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="2">
-                  <Card.Body>
-                    <div>
-                      <ul>
-                        {actorData?.combined_credits?.crew
-                          .filter((item) => item.media_type === "movie")
-                          .map((item, index) => (
-                            <Link to={`/movie/${item.id}`}>
-                              <Card.Body>
-                                <p>
-                                  <b>{item.title}:</b> {item.job}
-                                </p>
-                              </Card.Body>
-                            </Link>
-                          ))}
-                      </ul>
-                    </div>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-
+              {actorData?.combined_credits?.crew.length > 0 && (
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="2">
+                    Crew
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="2">
+                    <Card.Body>
+                      <div>
+                        <ul>
+                          {actorData?.combined_credits?.crew
+                            .filter((item) => item.media_type === "movie")
+                            .map((item, index) => (
+                              <Link to={`/movie/${item.id}`}>
+                                <Card.Body>
+                                  <p>
+                                    <b>{item.title}:</b> {item.job}
+                                  </p>
+                                </Card.Body>
+                              </Link>
+                            ))}
+                        </ul>
+                      </div>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              )}
               <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="3">
                   Images

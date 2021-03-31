@@ -6,14 +6,14 @@ export const newChatroom = async (req, res) => {
 
   try {
     const existingRoom = await Room.findOne({ name });
-    if (existingRoom) return res.send({ existingRoom });
+    if (existingRoom) return res.json(existingRoom);
 
     const newRoom = await Room.create({
       name,
     });
     await newRoom.save();
 
-    res.status(200).send(`${name} room created`);
+    res.status(200).json(newRoom);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Something went wrong [newRoom]" });
@@ -37,7 +37,7 @@ export const newMessage = async (req, res) => {
     });
     newMessage.save();
 
-    existingRoom.messages.push(newMessage);
+    existingRoom.messages = [...existingRoom.messages, newMessage];
     existingRoom.save();
 
     res.status(200).json(existingRoom.messages);

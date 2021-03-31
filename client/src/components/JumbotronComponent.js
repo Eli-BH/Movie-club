@@ -15,18 +15,21 @@ const JumbotronComponent = ({ images, loading }) => {
   };
 
   return (
-    <div className="container-sm" style={{ padding: 0 }}>
+    <div className=" jumbotronContainer">
       <div className="jumbotron jtc">
-        <div style={{ width: 200 }} className="jumbotron-carousel">
+        <div className="jumbotron-carousel">
           <CarouselComponent images={images} />
         </div>
 
         <div>
-          <h1>Welcome To Movie Club</h1>
-          <p>
-            If you know the name of the movie that you would like to see, search
-            here.
-          </p>
+          <div className="jumbotron-text">
+            <h1>Welcome To Movie Club</h1>
+            <p>
+              If you know the name of the movie that you would like to see,
+              search here.
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="search-form">
             <input
               className="homepage-search"
@@ -36,8 +39,8 @@ const JumbotronComponent = ({ images, loading }) => {
               placeholder="Search..."
             />
 
-            <Button type="submit" className="search-button" o>
-              <AiOutlineSearch className="mr-1" />
+            <Button type="submit" className="search-button" variant="blueBtn">
+              <AiOutlineSearch className="mr-1 search" />
               Search
             </Button>
           </form>

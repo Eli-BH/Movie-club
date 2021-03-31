@@ -4,6 +4,7 @@ import Tab from "react-bootstrap/Tab";
 
 import { Row, Col, Media, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ChatComponent from "./ChatComponent";
 
 const MoviePageExtrasComponent = ({
   comments,
@@ -39,6 +40,7 @@ const MoviePageExtrasComponent = ({
             )}
           </div>
         </Tab>
+
         <Tab eventKey="similar" title="Similar Movies">
           <div className="container m-3 media-similar">
             {singleMovie?.similar?.results?.length > 0 ? (
@@ -109,6 +111,9 @@ const MoviePageExtrasComponent = ({
               </Row>
             </form>
           </div>
+        </Tab>
+        <Tab eventKey="Chat" title="Chat">
+          <ChatComponent />
         </Tab>
       </Tabs>
     </div>

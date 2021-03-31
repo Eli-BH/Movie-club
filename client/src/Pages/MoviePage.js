@@ -4,12 +4,7 @@ import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
 import { Row, Col } from "react-bootstrap";
 import { addLike } from "../slices/userActions";
 import { userInfoSelector } from "../slices/userInfo";
-import {
-  chatSelector,
-  fetchChat,
-  newMessage,
-  sendMessage,
-} from "../slices/chat";
+import { chatSelector, fetchChat, newMessage } from "../slices/chat";
 
 import axios from "axios";
 import io from "socket.io-client";
@@ -21,6 +16,7 @@ import MoviePageExtrasComponent from "../components/MoviePageExtrasComponent";
 import RecommendationsComponent from "../components/RecommendationsComponent";
 import StatsComponent from "../components/StatsComponent";
 import WatchProviders from "../components/WatchProviders";
+import ChatComponent from "../components/ChatComponent";
 
 let socket;
 
@@ -30,11 +26,6 @@ const MoviePage = ({ match }) => {
   const [comment, setComment] = useState("");
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [comments, setComments] = useState({});
-  const [room, setRoom] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageList, setMessageList] = useState("");
-
-  const CONNECTION_PORT = "localhost:3001";
 
   const dispatch = useDispatch();
   const id = match.params.id;
@@ -64,23 +55,6 @@ const MoviePage = ({ match }) => {
 
     comments();
   }, [dispatch, id]);
-
-  useEffect(() => {
-    socket = io(CONNECTION_PORT);
-  }, [CONNECTION_PORT]);
-
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageList([...messageList, data]);
-      console.log(messageList);
-    });
-  });
-
-  useEffect(() => {
-    singleMovie && setRoom(singleMovie?.title);
-    socket.emit("join_room", room);
-    room !== "" && dispatch(fetchChat(room));
-  }, [room, singleMovie, dispatch]);
 
   const handleLike = () => {
     const movieInfo = {
@@ -116,23 +90,6 @@ const MoviePage = ({ match }) => {
     setComment("");
   };
 
-  const sendMessage = async () => {
-    let messageContent = {
-      room,
-      content: {
-        author: user.username,
-        message: message,
-      },
-    };
-    await socket.emit("send_message", messageContent);
-    setMessageList([...messageList, messageContent.content]);
-    dispatch(newMessage({ name: room, author: user.username, message }));
-    setMessage("");
-  };
-
-  console.log(watchProviders);
-  console.log(singleMovie);
-
   return singleMovie ? (
     <div>
       {" "}
@@ -143,36 +100,6 @@ const MoviePage = ({ match }) => {
           handleLike={handleLike}
         />
       }
-      {user ? (
-        <div className="chatContainer" style={{ height: 300, width: 600 }}>
-          <div className="messages">
-            {messageList &&
-              messageList?.map((val, index) => {
-                return (
-                  <div
-                    className="messageContainer"
-                    id={val.author === user.username ? "You" : "Other"}
-                  >
-                    <div className="messageIndividual" key={index}>
-                      <h5>{val.message}</h5>
-                    </div>
-                    <p>{val.author}</p>
-                  </div>
-                );
-              })}
-          </div>
-
-          <div className="messageInputs">
-            <input
-              type="text"
-              placeholder="Message..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <button onClick={sendMessage}>Send</button>
-          </div>
-        </div>
-      ) : null}
       <div className=" movie-page-container">
         <Row className=" movie-page-divider">
           <Col lg={8} sm={12} className="movie-page-left mt-5 mb-2">

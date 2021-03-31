@@ -5,17 +5,17 @@ import Image from "react-bootstrap/Image";
 
 const CarouselComponent = ({ images }) => {
   return (
-    <Container fluid>
-      <Carousel indicators={false}>
+    <div className="carousel-container">
+      <Carousel className="carousel-object" indicators={false}>
         {images ? (
           images.map((item) => {
             return (
               <Carousel.Item key={item.title}>
-                <Image
-                  src={`https://www.themoviedb.org/t/p/original${item.poster_path}`}
+                <img
+                  src={`https://www.themoviedb.org/t/p/original${item.backdrop_path}`}
                   alt={item.title}
-                  style={{ maxHeight: 250 }}
-                  rounded
+                  //width 250
+                  className="carousel-image"
                 />
               </Carousel.Item>
             );
@@ -24,7 +24,7 @@ const CarouselComponent = ({ images }) => {
           <h1>Loading </h1>
         )}
       </Carousel>
-    </Container>
+    </div>
   );
 };
 

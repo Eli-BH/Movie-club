@@ -7,6 +7,7 @@ const initialState = {
   loading: false,
   hasError: false,
   chatData: {},
+  chatMessageList: {},
 };
 
 const chatSlice = createSlice({
@@ -31,7 +32,7 @@ const chatSlice = createSlice({
     sendMessageSuccess: (state, { payload }) => {
       state.loading = false;
       state.hasError = false;
-      state.chatData = payload;
+      state.chatMessageList = payload;
     },
     sendMessageFailure: (state) => {
       state.loading = false;
@@ -80,6 +81,7 @@ export function newMessage(content) {
       const { data } = await axios.post(url, content);
       dispatch(sendMessageSuccess(data));
     } catch (error) {
+      console.log(error);
       dispatch(sendMessageFailure());
     }
   };
