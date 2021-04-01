@@ -1,0 +1,109 @@
+.cc-title-container {
+  margin-top: 3%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0.5%;
+  #cc-title {
+    color: white;
+    background-color: #1e202e;
+    margin: 0px;
+    padding: 5px;
+    border-radius: 15px;
+    border: dotted 5px yellow;
+    font-family: "Monoton", cursive;
+  }
+}
+.movie-page-cast-slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  background-color: #1e202e;
+  padding: 15px 0px 5px 0px;
+  border: #1e202e 3px solid;
+
+  box-shadow: inset 0px 0px 40px 40px #1e202e;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #8d99ae;
+    border-radius: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ef233c;
+    border-radius: 15px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(32, 73, 134);
+  }
+
+  .movie-page-cast-img {
+    text-align: center;
+    margin: 0 30px 10px 30px;
+    border: solid 1px rgb(199, 199, 199);
+    border-radius: 10px;
+    background-color: #cfc2a4;
+    box-shadow: 2px 4px 6px rgb(199, 199, 199);
+    img {
+      max-height: 275px;
+      border-top-left-radius: 5%;
+      border-top-right-radius: 5%;
+      border: solid #1e202e 3px;
+    }
+
+    p {
+      font-size: 12px;
+      margin: 0px;
+    }
+
+    #name,
+    #character {
+      color: black;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .movie-page-cast-slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    background-color: #1e202e;
+    padding: 15px 0px 5px 0px;
+    border: #1e202e 3px solid;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .movie-page-cast-img {
+      text-align: center;
+      margin: 0 30px 10px 30px;
+      border: solid 1px rgb(199, 199, 199);
+
+      background-color: #cfc2a4;
+      box-shadow: 2px 4px 6px rgb(199, 199, 199);
+      img {
+        max-height: 275px;
+        border-top-left-radius: 5%;
+        border-top-right-radius: 5%;
+        border: solid #1e202e 3px;
+      }
+
+      p {
+        font-size: 12px;
+        margin: 0px;
+      }
+
+      #name,
+      #character {
+        color: black;
+      }
+    }
+  }
+}

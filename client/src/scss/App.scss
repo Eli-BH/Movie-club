@@ -1,3 +1,10 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@import url("https://fonts.googleapis.com/css2?family=Alatsi&family=Monoton&display=swap");
+
 @import "~bootstrap/scss/bootstrap";
 @import "custom";
 @import "HomePage.scss";
@@ -9,4 +16,4 @@
 @import "JumboTron.scss";
 @import "Carousel.scss";
 @import "Sliders.scss";
-@import url("https://fonts.googleapis.com/css2?family=Alatsi&family=Monoton&display=swap");
+@import "CastAndCrew.scss";

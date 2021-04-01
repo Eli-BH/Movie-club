@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 const CastComponent = ({ singleMovie }) => {
   return (
     <div>
-      <h2>Top Billed Cast</h2>
+      <div className="cc-title-container">
+        <div id="cc-title">
+          <h2>Top Billed Cast</h2>
+        </div>
+      </div>
+
       <div className="movie-page-cast-slider my-4" id="mp-cast-slider">
         {singleMovie.credits.cast
           //.filter((item) => item.profile_path)
@@ -21,11 +26,11 @@ const CastComponent = ({ singleMovie }) => {
                     }
                     alt={item.name}
                   />
-                  <p>
+                  <h5 id="name">
                     <b>{item.name}</b>
-                  </p>
+                  </h5>
 
-                  <p>{item.character}</p>
+                  <p id="character">{item.character}</p>
                 </div>
               </Link>
             );

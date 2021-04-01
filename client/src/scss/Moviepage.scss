@@ -50,27 +50,6 @@
   }
 
   background: rgb(2, 0, 36);
-  //   background: -moz-linear-gradient(
-  //       126deg,
-  //       rgba(2, 0, 36, 0.9) 0%,
-  //       rgba(39, 9, 121, 0.9) 35%,
-  //       rgba(0, 168, 255, 0.9) 100%
-  //     ),
-  //     url("https://www.themoviedb.org/t/p/original/srYya1ZlI97Au4jUYAktDe3avyA.jpg");
-  //   background: -webkit-linear-gradient(
-  //       126deg,
-  //       rgba(2, 0, 36, 0.9) 0%,
-  //       rgba(39, 9, 121, 0.9) 35%,
-  //       rgba(0, 168, 255, 0.9) 100%
-  //     ),
-  //     url("https://www.themoviedb.org/t/p/original/srYya1ZlI97Au4jUYAktDe3avyA.jpg");
-  //   background: linear-gradient(
-  //       126deg,
-  //       rgba(2, 0, 36, 0.9) 0%,
-  //       rgba(39, 9, 121, 0.9) 35%,
-  //       rgba(0, 168, 255, 0.9) 100%
-  //     ),
-  //     url("https://www.themoviedb.org/t/p/original/srYya1ZlI97Au4jUYAktDe3avyA.jpg");
 
   img {
     border-radius: 15px;
@@ -118,47 +97,6 @@
   margin-right: auto;
 }
 .movie-page-left {
-  .movie-page-cast-slider {
-    display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #a9e4fb;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #4286f4;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(32, 73, 134);
-    }
-
-    .movie-page-cast-img {
-      text-align: center;
-      margin: 0 30px 0 30px;
-      border: solid 1px rgb(199, 199, 199);
-      border-radius: 10px;
-      box-shadow: inset 0px 0px 40px 40px #cfc2a4;
-      img {
-        width: 138px;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-      }
-      p {
-        margin: 0px;
-      }
-      p:nth-child(3) {
-        font-size: 14px;
-        margin: 0px;
-      }
-    }
-  }
   .media-videos {
     display: flex;
     overflow-x: scroll;
@@ -253,6 +191,17 @@
   }
 }
 
+/*
+
+
+
+mobile styles
+
+
+
+
+
+*/
 @media screen and (max-width: 450px) {
   .movie-page-container {
     max-width: 100%;
