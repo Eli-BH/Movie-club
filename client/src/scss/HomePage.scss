@@ -6,81 +6,6 @@
 .homepage {
   margin: 0;
 
-  .full {
-    display: flex;
-
-    button {
-      width: 100px;
-      height: 100px;
-      align-self: center;
-    }
-  }
-
-  .list-container {
-    display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-
-    .list-item {
-      text-align: center;
-      font-size: 1.2em;
-    }
-
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #a9e4fb;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #4286f4;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(32, 73, 134);
-    }
-  }
-
-  .trending-slider-container {
-    margin-top: 3%;
-  }
-
-  .trailer-container {
-    display: flex;
-    overflow-x: scroll;
-    padding: 20px;
-    scroll-behavior: smooth;
-
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #a9e4fb;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #4286f4;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(32, 73, 134);
-    }
-    .trailer-slider-img {
-      height: 180px;
-      transition: transform 250ms;
-      margin-left: 10px;
-      margin-right: 10px;
-      border-radius: 10px;
-      filter: drop-shadow(6px 6px 4px #11112c);
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
-  }
-
   background: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.9) 0%,
@@ -93,6 +18,10 @@
 
 .slide {
   filter: drop-shadow(0 0 0.75rem #4286f4);
+}
+
+#marquee-button {
+  background-color: #ef233c;
 }
 
 @media screen and (max-width: 800px) {

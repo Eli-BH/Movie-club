@@ -53,25 +53,26 @@ const HomePage = () => {
   ) : (
     <div className="homepage">
       <JumbotronComponent images={images} />
-      <div className="container trending-slider-container">
-        <h2>Trending Today</h2>
-        <TrendingSlider items={trendingMovies.results} sliderId="1" />
-      </div>
+      <>
+        <TrendingSlider
+          items={trendingMovies.results}
+          sliderId="1"
+          today={true}
+        />
+      </>
 
-      <div className="container trending-slider-container">
-        <h2>Trending this week</h2>
+      <div className=" trending-slider-container">
         <TrendingSlider
           items={weekTrending.results}
           sliderId="2"
           loading={weekLoading}
+          week={true}
         />
       </div>
-      <div className="container my-5">
-        <h2>New Trailers</h2>
+      <div className=" my-5">
         <TrailerSlider />
       </div>
-      <div className="container trending-slider-container">
-        <h2>Trending Actors</h2>
+      <div className="trending-slider-container">
         <TrendingSlider
           items={trendingPeople.results}
           sliderId="3"

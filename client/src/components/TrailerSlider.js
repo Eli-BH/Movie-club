@@ -27,35 +27,44 @@ const TrailerSlider = () => {
   //from Youtube api
 
   return trailerData[0] ? (
-    <div className="trailer-container container-sm">
-      <Modal show={show} onHide={handleClose} centered>
-        <iframe
-          title="Youtube Title"
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${id}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </Modal>
+    <>
+      <div className="trailer-title">
+        <div id="title">
+          <h1>Trending trailers</h1>
+        </div>
+      </div>
 
-      {trailerData[0].items.map((vid) => {
-        return (
-          <div
-            key={vid.id}
-            onClick={() => handleOpen(vid.contentDetails.videoId)}
-          >
-            <img
-              src={vid.snippet.thumbnails.medium.url}
-              alt={vid.snippet.title}
-              className="trailer-slider-img"
-            />
-            <p>{vid.snippet.title}</p>
-          </div>
-        );
-      })}
-    </div>
+      <div className="trailer-slider">
+        <Modal show={show} onHide={handleClose} centered>
+          <iframe
+            title="Youtube Title"
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${id}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </Modal>
+
+        {trailerData[0].items.map((vid) => {
+          return (
+            <div
+              className="trailer-items"
+              key={vid.id}
+              onClick={() => handleOpen(vid.contentDetails.videoId)}
+            >
+              <img
+                src={vid.snippet.thumbnails.medium.url}
+                alt={vid.snippet.title}
+                className="trailer-slider-img"
+              />
+              <p>{vid.snippet.title}</p>
+            </div>
+          );
+        })}
+      </div>
+    </>
   ) : (
     loading && <p>loading</p>
   );
