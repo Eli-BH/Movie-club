@@ -149,32 +149,6 @@
       }
     }
   }
-
-  .recommendations {
-    display: flex;
-    overflow-x: scroll;
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #a9e4fb;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #4286f4;
-      border-radius: 15px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(32, 73, 134);
-    }
-    .recommendations-container {
-      margin: 15px;
-      .recommendations-img {
-        height: 300px;
-      }
-    }
-  }
 }
 
 .movie-page-right {

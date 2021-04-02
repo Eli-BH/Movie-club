@@ -3,8 +3,9 @@
   margin: 0;
   padding: 0;
 }
-@import url("https://fonts.googleapis.com/css2?family=Alatsi&family=Monoton&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Alatsi&family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap");
 @import "~bootstrap/scss/bootstrap";
 @import "custom";
 @import "HomePage.scss";
@@ -17,3 +18,11 @@
 @import "Carousel.scss";
 @import "Sliders.scss";
 @import "CastAndCrew.scss";
+@import "MovieExtras.scss";
+@import "StatsStyles.scss";
+@import "WatchProvidersStyles.scss";
+@media screen and (max-width: 800px) {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

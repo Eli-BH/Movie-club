@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 const RecommendationsComponent = ({ singleMovie }) => {
   return singleMovie.recommendations ? (
     <div>
-      <h1>Recommendations</h1>
+      <div className="rec-title-container">
+        <div className="rec-title">
+          <h1>Recommendations</h1>
+        </div>
+      </div>
+
       <div className="recommendations">
         {singleMovie.recommendations.results.map((item) => {
           return (

@@ -1,0 +1,24 @@
+.stats-border {
+  padding: 4px;
+  border-radius: 25px;
+  background-color: #1e202e;
+  border: solid 2px #ef233c;
+}
+.stats-container {
+  width: 100%;
+
+  padding: 20px 0px;
+  border: solid 2px #ef233c;
+  border-radius: 25px;
+  color: #d9e4e8;
+  .movie-stats-item {
+    text-align: center;
+    h1 {
+      font-family: "Kumbh Sans", sans-serif, "Trebuchet MS",
+        "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    }
+  }
+}
+
+@media screen and(max-width: 800px) {
+}

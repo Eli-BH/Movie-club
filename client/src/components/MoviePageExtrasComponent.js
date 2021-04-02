@@ -15,8 +15,13 @@ const MoviePageExtrasComponent = ({
 }) => {
   return (
     <div>
-      <h2>Extras</h2>
-      <Tabs defaultActiveKey="videos">
+      <div>
+        <div>
+          <h2>Extras</h2>
+        </div>
+      </div>
+
+      <Tabs defaultActiveKey="videos" className="extras-tabs">
         <Tab eventKey="videos" title="Videos">
           <div className="container m-3 media-videos">
             {singleMovie.videos ? (
@@ -41,10 +46,10 @@ const MoviePageExtrasComponent = ({
           </div>
         </Tab>
 
-        <Tab eventKey="similar" title="Similar Movies">
-          <div className="container m-3 media-similar">
-            {singleMovie?.similar?.results?.length > 0 ? (
-              singleMovie.similar.results.map((item) => {
+        {singleMovie?.similar?.results.length > 0 && (
+          <Tab eventKey="similar" title="Similar Movies">
+            <div className="container m-3 media-similar">
+              {singleMovie.similar.results.map((item) => {
                 return (
                   <div className="similar-img-div">
                     <Link to={`/movie/${item.id}`}>
@@ -57,23 +62,14 @@ const MoviePageExtrasComponent = ({
                     </Link>
                   </div>
                 );
-              })
-            ) : (
-              <h3>No similar movies found</h3>
-            )}
-          </div>
-        </Tab>
+              })}
+            </div>
+          </Tab>
+        )}
         <Tab eventKey="comments" title="Comments">
-          <div>
+          <div className="comment-div">
             <Row>
-              <div
-                style={{
-                  width: "100%",
-                  height: 200,
-                  border: "black 2px solid",
-                  overflowY: "scroll",
-                }}
-              >
+              <div className="comments-box">
                 {comments.length > 0 ? (
                   comments.map((item) => (
                     <Card>
@@ -93,20 +89,17 @@ const MoviePageExtrasComponent = ({
               </div>
             </Row>
 
-            <form onSubmit={handleComment}>
+            <form className="comment-form" onSubmit={handleComment}>
               <Row>
                 <Col lg={10} className="p-0">
                   <input
-                    style={{ width: "100%" }}
                     type="text"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                   />
                 </Col>
                 <Col lg={2} className="p-0">
-                  <button type="submit" style={{ width: "100%" }}>
-                    Submit
-                  </button>
+                  <button type="submit">Submit</button>
                 </Col>
               </Row>
             </form>
