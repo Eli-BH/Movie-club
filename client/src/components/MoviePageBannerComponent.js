@@ -57,7 +57,7 @@ const MoviePageBannerComponent = ({ singleMovie, handleLike }) => {
             <div>
               <p>{singleMovie.release_date.replaceAll("-", "/")}</p>
 
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center banner-buttons">
                 <div className="dropdown mr-2">
                   <div className="dropbtn">Genres</div>
                   <div className="dropdown-content">

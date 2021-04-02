@@ -66,6 +66,7 @@ const MoviePage = ({ match }) => {
     dispatch(addLike(userInfo?._id, movieInfo));
 
     setLiked(true);
+    alert("movie liked");
   };
 
   const handleComment = async (e) => {
