@@ -92,13 +92,14 @@ const MoviePage = ({ match }) => {
   };
 
   return singleMovie ? (
-    <div>
+    <div className="movie-page" style={{ backgroundColor: "blue" }}>
       {" "}
       {loading && <div>{loading}</div>}
       {
         <MoviePageBannerComponent
           singleMovie={singleMovie}
           handleLike={handleLike}
+          user={user}
         />
       }
       <div className=" movie-page-container">
@@ -120,6 +121,7 @@ const MoviePage = ({ match }) => {
                   handleComment={handleComment}
                   singleMovie={singleMovie}
                   setComment={setComment}
+                  user={user}
                 />
               }
             </div>

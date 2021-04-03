@@ -69,6 +69,7 @@ const ChatComponent = () => {
             borderWidth: 2,
             borderColor: "black",
             borderStyle: "solid",
+            backgroundColor: "white",
           }}
         >
           {chatMessageList.length > 0 ? (

@@ -1,3 +1,14 @@
+.movie-page {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.9) 0%
+    ),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/overlook-carpet-trans.svg);
+  background-size: 169px 244px;
+  margin-bottom: 5vh;
+}
+
 .movie-banner-container {
   .dropbtn {
     background-color: #4c77af;

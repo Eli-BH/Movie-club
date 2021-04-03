@@ -1,7 +1,7 @@
 import React from "react";
 import { TiThumbsUp } from "react-icons/ti";
 
-const MoviePageBannerComponent = ({ singleMovie, handleLike }) => {
+const MoviePageBannerComponent = ({ singleMovie, handleLike, user }) => {
   return (
     <div>
       <div
@@ -68,13 +68,15 @@ const MoviePageBannerComponent = ({ singleMovie, handleLike }) => {
                       : null}
                   </div>
                 </div>
-                <div>
-                  <button className="px-2" onClick={handleLike}>
-                    {" "}
-                    <TiThumbsUp />
-                    Like
-                  </button>
-                </div>
+                {user && (
+                  <div>
+                    <button className="px-2" onClick={handleLike}>
+                      {" "}
+                      <TiThumbsUp />
+                      Like
+                    </button>
+                  </div>
+                )}
               </div>
 
               <p>{singleMovie.runtime} minutes</p>

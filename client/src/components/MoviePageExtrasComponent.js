@@ -12,6 +12,7 @@ const MoviePageExtrasComponent = ({
   handleComment,
   singleMovie,
   setComment,
+  user,
 }) => {
   return (
     <div>
@@ -88,26 +89,30 @@ const MoviePageExtrasComponent = ({
                 )}
               </div>
             </Row>
+            {user && (
+              <form className="comment-form" onSubmit={handleComment}>
+                <Row>
+                  <Col lg={10} className="p-0">
+                    <input
+                      type="text"
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                    />
+                  </Col>
 
-            <form className="comment-form" onSubmit={handleComment}>
-              <Row>
-                <Col lg={10} className="p-0">
-                  <input
-                    type="text"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                  />
-                </Col>
-                <Col lg={2} className="p-0">
-                  <button type="submit">Submit</button>
-                </Col>
-              </Row>
-            </form>
+                  <Col lg={2} className="p-0">
+                    <button type="submit">Submit</button>
+                  </Col>
+                </Row>
+              </form>
+            )}
           </div>
         </Tab>
-        <Tab eventKey="Chat" title="Chat">
-          <ChatComponent />
-        </Tab>
+        {user && (
+          <Tab eventKey="Chat" title="Chat">
+            <ChatComponent />
+          </Tab>
+        )}
       </Tabs>
     </div>
   );

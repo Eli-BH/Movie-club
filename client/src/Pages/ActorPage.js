@@ -23,28 +23,26 @@ const ActorPage = ({ match }) => {
     <div className="actorPageContainer">
       {loading && <h1>Loading</h1>}
       {actorData ? (
-        <div>
-          <div className="d-flex align-items-center">
+        <div className="actor-page-item">
+          <div className="actor-profile">
             <div>
               <img
                 src={`https://www.themoviedb.org/t/p/original${actorData.profile_path}`}
                 alt={actorData.name}
                 className="actorPageImage"
-                width="200"
-                height="300"
               />
-              <h4>{actorData?.name}</h4>
+              <h4 className="actor-name">{actorData?.name}</h4>
             </div>
           </div>
 
-          <div>
+          <div className="actor-accordion">
             <Accordion>
-              <Card>
+              <Card className="acc-card">
                 <Accordion.Toggle as={Card.Header} eventKey="4">
                   Biography
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="4">
-                  <Card.Body>
+                  <Card.Body id="acc-card-body">
                     <div>
                       {actorData?.birthday && (
                         <p>
@@ -73,12 +71,12 @@ const ActorPage = ({ match }) => {
                 </Accordion.Collapse>
               </Card>
 
-              <Card>
+              <Card className="acc-card">
                 <Accordion.Toggle as={Card.Header} eventKey="0">
                   Cast
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
-                  <Card.Body>
+                  <Card.Body id="acc-card-body">
                     <Row className="justify-content-center">
                       {actorData?.combined_credits?.cast
                         .filter((item) => item.media_type === "movie")
@@ -107,15 +105,17 @@ const ActorPage = ({ match }) => {
                                     : `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png`
                                 }
                                 alt={item.title}
-                                style={{ height: 429 }}
+                                className="actor-poster"
                               />
-                              <Card.Footer>
+                              <Card.Footer className="actor-footer">
                                 <p>
-                                  <b>Character: </b>
+                                  {item.character && <b>Character: </b>}
+
                                   {item.character}
                                 </p>
                                 <p>
-                                  <b>Release Date: </b>
+                                  {item.release_date && <b>Release Date: </b>}
+
                                   {item.release_date}
                                 </p>
                               </Card.Footer>
@@ -128,12 +128,12 @@ const ActorPage = ({ match }) => {
               </Card>
 
               {actorData?.combined_credits?.crew.length > 0 && (
-                <Card>
+                <Card className="acc-card">
                   <Accordion.Toggle as={Card.Header} eventKey="2">
                     Crew
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="2">
-                    <Card.Body>
+                    <Card.Body id="acc-card-body">
                       <div>
                         <ul>
                           {actorData?.combined_credits?.crew
@@ -153,28 +153,28 @@ const ActorPage = ({ match }) => {
                   </Accordion.Collapse>
                 </Card>
               )}
-              <Card>
+              <Card className="acc-card">
                 <Accordion.Toggle as={Card.Header} eventKey="3">
                   Images
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="3">
-                  <Card.Body>
+                  <Card.Body id="acc-card-body">
                     <Row>
                       {actorData?.images?.profiles.map((item, index) => (
-                        <Card>
+                        <Card className="sub-card">
                           <Card.Img
                             src={`https://www.themoviedb.org/t/p/original${item.file_path}`}
                             alt={`image number ${index}`}
-                            style={{ maxHeight: 300, width: "auto" }}
+                            style={{ maxHeight: 428, maxWidth: 300 }}
                           />
                         </Card>
                       ))}
                       {actorData?.tagged_images?.results.map((item, index) => (
-                        <Card>
+                        <Card className="sub-card">
                           <Card.Img
                             src={`https://www.themoviedb.org/t/p/original${item.file_path}`}
                             alt={`image number ${item.image_type}`}
-                            style={{ maxHeight: 300, width: "auto" }}
+                            className="actor-pictures"
                           />
                         </Card>
                       ))}
