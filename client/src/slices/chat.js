@@ -63,7 +63,7 @@ export function fetchChat(room) {
     dispatch(getChat());
 
     try {
-      const url = `http://localhost:3001/chat/connect`;
+      const url = `https://movie-club-server.herokuapp.com/chat/connect`;
       const { data } = await axios.post(url, { name: room });
       dispatch(getChatSuccess(data));
     } catch (error) {
@@ -77,7 +77,7 @@ export function newMessage(content) {
     dispatch(getChat());
 
     try {
-      const url = `http://localhost:3001/chat/message`;
+      const url = `https://movie-club-server.herokuapp.com/chat/message`;
       const { data } = await axios.post(url, content);
       dispatch(sendMessageSuccess(data));
     } catch (error) {

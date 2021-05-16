@@ -28,11 +28,8 @@ const userInfoSlice = createSlice({
 });
 
 //actions
-export const {
-  getUserInfo,
-  getUserInfoFailure,
-  getUserInfoSuccess,
-} = userInfoSlice.actions;
+export const { getUserInfo, getUserInfoFailure, getUserInfoSuccess } =
+  userInfoSlice.actions;
 
 //selector
 export const userInfoSelector = (state) => state.userInfo;
@@ -47,7 +44,7 @@ export function fetchUserInfo(userId) {
 
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/users/profile/${userId}`
+        `https://movie-club-server.herokuapp.com/users/profile/${userId}`
       );
 
       dispatch(getUserInfoSuccess(data));

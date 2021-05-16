@@ -29,11 +29,8 @@ const trendingSlice = createSlice({
 });
 
 //Tree actions generated from the slice
-export const {
-  getTrending,
-  getTrendingSuccess,
-  getTrendingFailure,
-} = trendingSlice.actions;
+export const { getTrending, getTrendingSuccess, getTrendingFailure } =
+  trendingSlice.actions;
 
 //A selector
 
@@ -49,7 +46,7 @@ export function fetchTrendingMovies() {
 
     try {
       const response = await axios.get(
-        "https://api.themoviedb.org/3/trending/movie/day?api_key=0ca4f16446cc1bca4c690abae99b5e52"
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_TMDB_KEY}`
       );
       const { data } = response;
 

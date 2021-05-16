@@ -48,7 +48,7 @@ export function fetchSearchResults(query, page = 1) {
     try {
       if (query.includes(" ")) query = query.replaceAll(" ", "%20");
 
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=0ca4f16446cc1bca4c690abae99b5e52&language=en-US&query=${query}&include_adult=false&page=${page}`;
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${query}&include_adult=false&page=${page}`;
       const response = await axios.get(url);
       const { data } = response;
       dispatch(getSearchResultsSuccess(data));

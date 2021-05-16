@@ -33,7 +33,7 @@ const MoviePage = ({ match }) => {
     const response = async () => {
       await axios
         .get(
-          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=0ca4f16446cc1bca4c690abae99b5e52`
+          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${process.env.REACT_APP_TMDB_KEY}`
         )
         .then(({ data }) => {
           setWatchProviders(data.results.US);
@@ -44,9 +44,11 @@ const MoviePage = ({ match }) => {
     response();
 
     const comments = () =>
-      axios.get(`http://localhost:3001/users/comment/${id}`).then((res) => {
-        setComments(res.data.reverse());
-      });
+      axios
+        .get(`https://movie-club-server.herokuapp.com/users/comment/${id}`)
+        .then((res) => {
+          setComments(res.data.reverse());
+        });
 
     comments();
   }, [dispatch, id]);
@@ -73,11 +75,14 @@ const MoviePage = ({ match }) => {
       userName: user?.username,
       comment,
     };
-    await axios.post(`http://localhost:3001/users/comment/${id}`, commentObj);
+    await axios.post(
+      `https://movie-club-server.herokuapp.com/users/comment/${id}`,
+      commentObj
+    );
 
     const comments = () =>
       axios
-        .get(`http://localhost:3001/users/comment/${id}`)
+        .get(`https://movie-club-server.herokuapp.com/users/comment/${id}`)
         .then(({ data }) => {
           setComments(data.reverse());
         });

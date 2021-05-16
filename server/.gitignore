@@ -1,0 +1,7 @@
+node_modules
+.env
+additionalinfo.txt
+env
+
+/*.env
+/node_modules

@@ -98,7 +98,7 @@ export function addLike(id, movie) {
 
     try {
       const { data } = await axios.patch(
-        `http://localhost:3001/users/like/${id}`,
+        `https://movie-club-server.herokuapp.com/users/like/${id}`,
         movie
       );
       dispatch(like(data));
@@ -127,7 +127,7 @@ export function addCommentThunk(movieId, movieObj) {
 
     try {
       const { data } = axios.post(
-        `http://localhost:3001/users/comment/${movieId}`,
+        `https://movie-club-server.herokuapp.com/users/comment/${movieId}`,
         movieObj
       );
 
@@ -145,7 +145,7 @@ export function getCommentsThunk(movieId) {
 
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/users/comment/${movieId} `
+        `https://movie-club-server.herokuapp.com/users/comment/${movieId} `
       );
 
       console.log(data);

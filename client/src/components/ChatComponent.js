@@ -15,7 +15,7 @@ const ChatComponent = () => {
   const [room, setRoom] = useState("");
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  const CONNECTION_PORT = "localhost:3001";
+  const CONNECTION_PORT = "movie-club-server.herokuapp.com";
   const dispatch = useDispatch();
 
   const { chatMessageList } = useSelector(chatSelector);

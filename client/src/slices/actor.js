@@ -27,11 +27,8 @@ const actorSlice = createSlice({
 });
 
 //actions
-export const {
-  getActorInfo,
-  getActorInfoSuccess,
-  getActorInfoFailure,
-} = actorSlice.actions;
+export const { getActorInfo, getActorInfoSuccess, getActorInfoFailure } =
+  actorSlice.actions;
 
 //reducers
 export default actorSlice.reducer;
@@ -45,7 +42,7 @@ export function fetchActorInfo(id) {
     dispatch(getActorInfo());
 
     try {
-      const url = `https://api.themoviedb.org/3/person/${id}?api_key=0ca4f16446cc1bca4c690abae99b5e52&language=en-US&append_to_response=combined_credits,external_ids,images,tagged_images`;
+      const url = `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&append_to_response=combined_credits,external_ids,images,tagged_images`;
       const { data } = await axios.get(url);
       dispatch(getActorInfoSuccess(data));
     } catch (error) {

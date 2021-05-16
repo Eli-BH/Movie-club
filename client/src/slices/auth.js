@@ -68,7 +68,7 @@ export function authLogin(formData, history) {
     dispatch(login());
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/users/signin",
+        "https://movie-club-server.herokuapp.com/users/signin",
         formData
       );
 
@@ -85,7 +85,7 @@ export function authSignUp(formData, history) {
     dispatch(signUp());
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/users/signup",
+        "https://movie-club-server.herokuapp.com/users/signup",
         formData
       );
 

@@ -49,7 +49,7 @@ export function fetchTrendingPeople() {
 
     try {
       const response = await axios.get(
-        "https://api.themoviedb.org/3/trending/person/week?api_key=0ca4f16446cc1bca4c690abae99b5e52"
+        `https://api.themoviedb.org/3/trending/person/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
       );
       const { data } = response;
 
