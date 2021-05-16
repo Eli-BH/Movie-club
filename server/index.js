@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
 import { Server } from "socket.io";
 
 import userRouter from "./routes/users.js";

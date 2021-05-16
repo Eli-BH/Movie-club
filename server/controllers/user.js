@@ -131,6 +131,25 @@ export const likeMovie = async (req, res) => {
     res.status(500).json({ message: "Something Went Wrong [like movie]" });
   }
 };
+export const unlikeMovie = async (req, res) => {
+  const { id } = req.params;
+  const movie = req.body;
+  try {
+    const user = await User.findById(id);
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (user?.likes.includes(movie?.id)) {
+      await user.updateOne({ $pull: { likes: movie.id } });
+    }
+
+    await user.save();
+    res.status(200).json({ message: "Movie unLiked!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something Went Wrong [like movie]" });
+  }
+};
 
 export const addComment = async (req, res) => {
   const comment = req.body;
