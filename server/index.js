@@ -11,16 +11,23 @@ dotenv.config();
 
 const app = express();
 
+//middleware
 app.use(cors());
 app.options("*", cors());
-
 app.use(express.json());
 
+//routes
 app.use("/users", userRouter);
 app.use("/chat", chatRouter);
+app.get("/", (req, res) => {
+  res.send("server running");
+});
+
+//port
 const CONNECTION_URI = process.env.MOGODB_URI;
 const PORT = process.env.PORT || 3001;
 
+//server conn
 const server = app.listen(PORT, () => {
   console.log(`Server connected,  started on port ${PORT}`);
 });
