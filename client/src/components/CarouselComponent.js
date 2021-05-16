@@ -1,7 +1,5 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import Container from "react-bootstrap/esm/Container";
-import Image from "react-bootstrap/Image";
 
 const CarouselComponent = ({ images }) => {
   return (

@@ -54,7 +54,6 @@ const AuthForm = () => {
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
-    const token = res?.tokenId;
 
     const googleFormData = {
       firstName: result.givenName,

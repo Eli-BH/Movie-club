@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Accordion, Button, Card, Row } from "react-bootstrap";
+import { Accordion, Card, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchActorInfo, actorSelector } from "../slices/actor";

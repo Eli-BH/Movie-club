@@ -4,10 +4,8 @@ import { singleMovieSelector, fetchSingleMovie } from "../slices/singleMovie";
 import { Row, Col } from "react-bootstrap";
 import { addLike } from "../slices/userActions";
 import { userInfoSelector } from "../slices/userInfo";
-import { chatSelector, fetchChat, newMessage } from "../slices/chat";
 
 import axios from "axios";
-import io from "socket.io-client";
 
 import MoviePageBannerComponent from "../components/MoviePageBannerComponent";
 import CastComponent from "../components/CastComponent";
@@ -16,9 +14,6 @@ import MoviePageExtrasComponent from "../components/MoviePageExtrasComponent";
 import RecommendationsComponent from "../components/RecommendationsComponent";
 import StatsComponent from "../components/StatsComponent";
 import WatchProviders from "../components/WatchProviders";
-import ChatComponent from "../components/ChatComponent";
-
-let socket;
 
 const MoviePage = ({ match }) => {
   const [watchProviders, setWatchProviders] = useState(null);

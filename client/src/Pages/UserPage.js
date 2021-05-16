@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card, Image, Row } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import { userInfoSelector } from "../slices/userInfo";
 
 const UserPage = ({ match }) => {
-  const userId = match.params.id;
-
-  const { loading, hasError, userInfo } = useSelector(userInfoSelector);
-
+  const { userInfo } = useSelector(userInfoSelector);
+  //page uses cards to show likes
+  //needs unlike function
   return (
     <div className="profileContainer container">
       <div className="profileUserInfo">
@@ -31,7 +30,11 @@ const UserPage = ({ match }) => {
                 <Link to={`/movie/${item.id}`}>
                   <Card
                     key={index}
-                    style={{ width: "14rem" }}
+                    style={{
+                      width: "14rem",
+                      color: "black",
+                      textDecoration: "none",
+                    }}
                     className="profileLikeCards m-3"
                   >
                     <Card.Body>
