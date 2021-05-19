@@ -1,7 +1,7 @@
 <h1>Movie Club </h1>
 
 <h3>Usage</h3>
-[https://movieclub-client.herokuapp.com/] (Check it out here!)
+[Check it out here](https://movieclub-client.herokuapp.com/)
 <p>Movie Club is a collection style application that allows the user to creates a collection of movies that they have liked or seen, and get information for movies that they may be interested in. </p>
 
 <br/>
