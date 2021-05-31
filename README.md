@@ -99,29 +99,38 @@ Add notes about how to use the system.
 
 
 Home Page
- <img width=200px height=500px src="https://i.imgur.com/xNGDo6x.jpeg" alt="Project logo">
+<p align="center"><img src="https://i.imgur.com/xNGDo6x.jpeg" alt="Project logo"></p>
+ 
  
 Home Page sliders
- <img width=200px height=500px src="https://i.imgur.com/mN3lezy.jpeg" alt="Project logo">
+<p align="center"><imgsrc="https://i.imgur.com/mN3lezy.jpeg" alt="Project logo"></p>
+ 
  
 Mobile Version
-  <img width=200px height=500px src='https://i.imgur.com/9tFno63.jpeg' alt="mobile ">
+<p align="center"><imgsrc='https://i.imgur.com/9tFno63.jpeg' alt="mobile "></p>
+  
   
  Movie Page
-  <img width=200px height=500px src='https://i.imgur.com/ehyJo5p.jpeg' alt="mobile ">
+ <p align="center"><img src='https://i.imgur.com/ehyJo5p.jpeg' alt="mobile "></p>
+  
   
  Movie Page Extra sliders
- <img width=200px height=500px src='https://i.imgur.com/1EewGQM.jpeg' alt="mobile ">
- <img width=200px height=500px src='https://i.imgur.com/YQ1TKfD.jpeg' alt="mobile ">
+ <p align="center"><imgsrc='https://i.imgur.com/1EewGQM.jpeg' alt="mobile "></p>
+ 
+ <p align="center"> <img src='https://i.imgur.com/YQ1TKfD.jpeg' alt="mobile "></p>
+
  
  Movie Info 
-  <img width=200px height=400px src='https://i.imgur.com/DbHNgIY.jpeg' alt="mobile ">
+ <p align="center"><img src='https://i.imgur.com/DbHNgIY.jpeg' alt="mobile "></p>
+  
   
   Comments 
-  <img width=100px height=400px src='https://i.imgur.com/FifpSRR.jpeg' alt="mobile ">
+  <p align="center"> <img src='https://i.imgur.com/FifpSRR.jpeg' alt="mobile "></p>
+ 
   
   Chat
-  <img width=100px height=400px src='https://i.imgur.com/6kpCYs1.jpeg' alt="mobile ">
+  <p align="center"> <img  src='https://i.imgur.com/6kpCYs1.jpeg' alt="mobile "></p>
+ 
  
  
 ## 🚀 Deployment <a name = "deployment"></a>
