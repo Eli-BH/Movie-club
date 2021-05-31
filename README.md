@@ -1,9 +1,9 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="https://i.imgur.com/S5Qao5V.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Movie Club</h3>
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A Place for movies new and old.
     <br> 
 </p>
 
@@ -27,64 +27,71 @@
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+This is a full-stack MERN project that is meant to make it easy to check out information on new and old movies. 
+The purpose of the application was to experiment with the TMDB API, integrate a chat room in every movie page, and have the ability to save watched movies. 
+
+I also wanted to practice creating a full-stack application that allows users to interact with each other. This comes with the chat rooms and comment sections. 
+
+Finally, I wanted to get similar functionality to the original IMDB site, something simple and easy to navigate. 
+
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+To get started using the application, you will need to configure your API keys and MongoDB connection settings. 
+You will need a working MongoDB cluster and an API key from TMDB. 
+
+These keys will need to be stored in a .env file on the server directory of the application. 
+
+You will also need a key for the Youtube API, this will be stored in a .env file on the base of the client directory. 
+
+Once the API keys are in the .env files, they just need to be connected to the application. 
+
+Once connected, you just need to start the application. 
+
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+- An updated version of node
+- Youtube api Key
+- TMDB api key
+- OBDB api key
 
-```
-Give examples
-```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
+Clone the code to your system, and install the dependencies 
 ```
-Give the example
+npm start
 ```
+Do this in the client and server directories
 
-And repeat
 
+The client .env file should have the keys in these variables. 
+
+- REACT_APP_YOUTUBE_KEY
+- REACT_APP_TMDB_KEY
+
+The server .env file's variables should be set as these
+
+-TMDB_API_KEY
+-TMDB_READ_ACCESS_TOKEN
+-OMDB_API_KEY
+-MOGODB_URI
+-SECRET
+
+The node server, and react app can be run with this command 
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+npm start
 ```
 
-### And coding style tests
+Go to localhost:3000 on your browser, and the app should be running
 
-Explain what these tests test and why
 
-```
-Give an example
-```
 
 ## 🎈 Usage <a name="usage"></a>
 
@@ -92,23 +99,18 @@ Add notes about how to use the system.
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+The server and client need to be deployed in different projects, and the environment variables need to be set wherever you are deploying to. 
+
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
 - [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
+- [ReactJS](https://reactjs.org/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@Eli-BG](https://github.com/Eli-BH) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
