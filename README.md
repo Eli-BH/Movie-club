@@ -97,6 +97,33 @@ Go to localhost:3000 on your browser, and the app should be running
 
 Add notes about how to use the system.
 
+
+Home Page
+ <img width=200px height=500px src="https://i.imgur.com/xNGDo6x.jpeg" alt="Project logo">
+ 
+Home Page sliders
+ <img width=200px height=500px src="https://i.imgur.com/mN3lezy.jpeg" alt="Project logo">
+ 
+Mobile Version
+  <img width=200px height=500px src='https://i.imgur.com/9tFno63.jpeg' alt="mobile ">
+  
+ Movie Page
+  <img width=200px height=500px src='https://i.imgur.com/ehyJo5p.jpeg' alt="mobile ">
+  
+ Movie Page Extra sliders
+ <img width=200px height=500px src='https://i.imgur.com/1EewGQM.jpeg' alt="mobile ">
+ <img width=200px height=500px src='https://i.imgur.com/YQ1TKfD.jpeg' alt="mobile ">
+ 
+ Movie Info 
+  <img width=200px height=400px src='https://i.imgur.com/DbHNgIY.jpeg' alt="mobile ">
+  
+  Comments 
+  <img width=100px height=400px src='https://i.imgur.com/FifpSRR.jpeg' alt="mobile ">
+  
+  Chat
+  <img width=100px height=400px src='https://i.imgur.com/6kpCYs1.jpeg' alt="mobile ">
+ 
+ 
 ## 🚀 Deployment <a name = "deployment"></a>
 
 The server and client need to be deployed in different projects, and the environment variables need to be set wherever you are deploying to. 
